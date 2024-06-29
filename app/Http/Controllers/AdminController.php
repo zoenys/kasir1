@@ -20,7 +20,7 @@ class AdminController extends Controller
         // } else {
         //     return redirect('/login')->withErrors('Login Terlebih Dahulu.');
         // }
-        return view('menu');
+        return view('admin');
     }
     public function petugasgudang()
     {
@@ -31,7 +31,7 @@ class AdminController extends Controller
         // } else {
         //     return redirect('/login')->withErrors('Login Terlebih Dahulu.');
         // }
-        return view('menu');
+        return view('pg');
     }
     public function kasir()
     {
@@ -42,6 +42,6 @@ class AdminController extends Controller
         // } else {
         //     return redirect('/login')->withErrors('Login Terlebih Dahulu.');
         // }
-        return view('menu');
+        return view('kasir');
     }
 }
