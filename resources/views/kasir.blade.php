@@ -22,8 +22,10 @@
     </div>
   </div>
   <script>
+    // Push state untuk mendeteksi navigasi
     history.pushState(null, null, location.href);
-    window.addEventListener('popstate', function() {
+    window.addEventListener('popstate', function(event) {
+      // Mengarahkan ke /logout ketika tombol back di browser ditekan
       window.location.href = '/logout';
     });
   </script>

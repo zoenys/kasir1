@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,14 +42,26 @@ Route::middleware(['guest'])->group(function(){
 });
 
 // Routes for authenticated users
+// Route::middleware(['auth'])->group(function(){
+//     Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
+//     Route::get('/petugasgudang', [AdminController::class, 'petugasgudang'])->middleware('userAkses:petugasgudang')->name('petugasgudang');
+//     Route::resource('barang', BarangController::class);
+//     Route::get('/kasir', [AdminController::class, 'kasir'])->middleware('userAkses:kasir')->name('kasir');
+//     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
+// });
+
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
     Route::get('/petugasgudang', [AdminController::class, 'petugasgudang'])->middleware('userAkses:petugasgudang')->name('petugasgudang');
+    Route::resource('barang', BarangController::class);
+    Route::resource('petugasgudang', BarangController::class);
     Route::get('/kasir', [AdminController::class, 'kasir'])->middleware('userAkses:kasir')->name('kasir');
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
+
 
 // Home route
 Route::get('/home', function () {
     return view('home');
 })->name('home');
+
