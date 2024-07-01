@@ -118,8 +118,8 @@
                                                             <th>Kode Barang</th>
                                                             <th>Nama</th>
                                                             <th>Satuan</th>
-                                                            <th>Harga Jual</th>
-                                                            <th>Stok</th>
+                                                            <th class="sortable" onclick="sortTable(3, 'barang-table')">Harga Jual</th>
+                                                            <th class="sortable" onclick="sortTable(4, 'barang-table')">Stok</th>
                                                             <th>Barcode</th>
                                                         </tr>
                                                     </thead>
@@ -265,7 +265,7 @@
             const cellA = a.getElementsByTagName('td')[columnIndex].innerText.toLowerCase();
             const cellB = b.getElementsByTagName('td')[columnIndex].innerText.toLowerCase();
 
-            if (columnIndex === 2) {
+            if (columnIndex === 2 || columnIndex === 3 || columnIndex === 4) { // Adjusted column index for price and stock
                 return parseFloat(cellA.replace(/[^\d.-]/g, '')) - parseFloat(cellB.replace(/[^\d.-]/g, ''));
             } else {
                 return cellA.localeCompare(cellB);
