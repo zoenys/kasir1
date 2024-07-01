@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminnController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
-
+use App\Http\Controllers\KasirController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,10 +53,15 @@ Route::middleware(['guest'])->group(function(){
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
+    Route::get('/admin', [AdminnController::class, 'index']);
     Route::get('/petugasgudang', [AdminController::class, 'petugasgudang'])->middleware('userAkses:petugasgudang')->name('petugasgudang');
     Route::resource('barang', BarangController::class);
     Route::resource('petugasgudang', BarangController::class);
     Route::get('/kasir', [AdminController::class, 'kasir'])->middleware('userAkses:kasir')->name('kasir');
+    Route::get('/kasir', [KasirController::class, 'index', 'getBarangDetails']);
+    Route::get('/kasir', [KasirController::class, 'index']);
+    Route::post('/kasir/order', [KasirController::class, 'submitOrder']);
+    Route::get('/kasir/order', [KasirController::class, 'showOrder']);
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
 
